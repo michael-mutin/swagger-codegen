@@ -18,6 +18,7 @@ public class CodegenParameter extends CodegenObject {
     public CodegenProperty items;
     public boolean nullable;
     public boolean isJson;
+    public boolean deprecated;
 
     /**
      * Determines whether this parameter is mandatory. If the parameter is in "path",
@@ -110,6 +111,7 @@ public class CodegenParameter extends CodegenObject {
         output.baseType = this.baseType;
         output.nullable = this.nullable;
         output.isJson = this.isJson;
+        output.deprecated = this.deprecated;
         output.required = this.required;
         output.maximum = this.maximum;
         output.exclusiveMaximum = this.exclusiveMaximum;
@@ -194,6 +196,8 @@ public class CodegenParameter extends CodegenObject {
             return false;
         if (isJson != that.isJson)
             return false;
+        if (deprecated != that.deprecated)
+            return false;
         if (required != that.required)
             return false;
         if (maximum != null ? !maximum.equals(that.maximum) : that.maximum != null)
@@ -242,6 +246,7 @@ public class CodegenParameter extends CodegenObject {
         result = 31 * result + (vendorExtensions != null ? vendorExtensions.hashCode() : 0);
         result = 31 * result + (nullable ? 13:31);
         result = 31 * result + (isJson ? 13:31);
+        result = 31 * result + (deprecated ? 13:31);
         result = 31 * result + (required ? 13:31);
         result = 31 * result + (maximum != null ? maximum.hashCode() : 0);
         result = 31 * result + (exclusiveMaximum ? 13:31);
@@ -339,6 +344,10 @@ public class CodegenParameter extends CodegenObject {
 
     public boolean getIsJson() {
         return isJson;
+    }
+
+    public boolean getDeprecated() {
+        return deprecated;
     }
 
     public boolean getRequired() {
